@@ -4,7 +4,7 @@ object UsingSpark_XMLtoJSON extends App {
 
 val session = SparkSession.builder().appName("MeteoStations").master("local").getOrCreate()
 
-  val fPath = "./src/resources/GB_meta.xml"
+  val fPath = "./src/resources/HR_meta.xml"
   val df = session.read
     .format("xml")
     .option("rowTag", "station")
@@ -16,4 +16,5 @@ val session = SparkSession.builder().appName("MeteoStations").master("local").ge
     .option("rootTag","station")
     .partitionBy("_Id")
     .json("./src/resources/stations_meta.json")
+
 }
