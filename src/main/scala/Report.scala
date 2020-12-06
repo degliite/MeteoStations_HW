@@ -23,7 +23,7 @@ object Report extends App {
       val measurement_info: String = (el \\ "measurement_info").map(getMeteoData).mkString("\n")
       val statistics: String = (el \\ "statistics").map(getStatistics).mkString("\n")
 
-      override def toString: String = s"STATION: $european_code\n \nMEASUREMENT INFO:$measurement_info $statistics"
+      override def toString: String = s"STATION: $station_name(code:$european_code)\n \nMEASUREMENT INFO:$measurement_info $statistics"
     }
 
   // to get measurement meta data
