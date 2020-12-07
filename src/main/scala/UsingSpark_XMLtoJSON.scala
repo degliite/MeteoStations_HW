@@ -1,7 +1,4 @@
 import org.apache.spark.sql.SparkSession
-import java.io.File
-
-import scala.reflect.io.File
 
 object UsingSpark_XMLtoJSON extends App {
 
@@ -14,11 +11,6 @@ val session = SparkSession.builder().appName("MeteoStations").master("local").ge
     .load(fPath)
 
   // creates new json file for each station
-//  val stations = df.select("_Id", "station_info")
-//  stations.write
-//    .option("rootTag","station")
-//    .partitionBy("_Id")
-//    .json("./src/resources/stations_meta.json")
 
   val tmpPath = "./src/resources/meteoJSON"
   val fPathUnion = "./src/resources/newMeteoJSON"
