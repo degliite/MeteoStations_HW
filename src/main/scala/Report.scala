@@ -37,14 +37,11 @@ object Report extends App {
     }
 
   // to get statistics
-  def getStatistics(el: Node): Statistics = {
+  def getStatistics(el: Node): Statistics =
     new Statistics {
       val year: Int = (el \ "@Year").text.toInt
-//      val statistic_name: String = (el \\ "statistic_result").filter(i => i.toString.contains("P50")).text
-      val statistic_name: String = (el \\ "statistic_result").head.text
-//      val statistic_value: Double = (el \ "statistic_value").text.toDouble
+      val statistic_name: String = (el \\ "statistic_result").filter(i => i.toString.contains("P50")).head.text
     }
-  }
 
   println("Showing REPORT BY STATION: \n")
 
