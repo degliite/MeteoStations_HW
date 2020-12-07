@@ -1,7 +1,8 @@
 import java.io.{File, FileWriter}
 
-import scala.xml.{Node, NodeSeq}
+import scala.xml.{Node, NodeSeq, XML}
 import scala.xml.XML.loadFile
+import org.json.XML
 
 object Report extends App {
 
@@ -43,11 +44,6 @@ object Report extends App {
       val statistic_name: String = (el \\ "statistic_result").filter(i => i.toString.contains("P50")).head.text
     }
 
-  println("Showing REPORT BY STATION: \n")
-
-  val station1 = getStationMeta(stations(1))
-  println(station1)
-
 // To get all stations in a Seq
   def getStationSeq(stationNodes: NodeSeq): Seq[Station] = {
     for (station <- stationNodes) yield getStationMeta(station)
@@ -59,7 +55,7 @@ object Report extends App {
     val station_name = el.station_name
     val european_code = el.european_code
     val writer = new FileWriter(new File(s"./src/resources/stations_TSV/${station_name}_${european_code}_yearly.tsv"))
-    writer.write("Component name\tCaption\tUnit\tTechnique Principle\tMean Value\tP50 Value\n\n" + el.toString)
+    writer.write("Report by station\n\n" + el.toString)
     writer.close()
   }
 
